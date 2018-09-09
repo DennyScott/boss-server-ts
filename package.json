@@ -1,0 +1,119 @@
+{
+  "name": "express-babel",
+  "version": "1.0.0",
+  "description": "Using latest JavaScript features on the server",
+  "repository": "https://github.com/vmasto/express-babel",
+  "author": "Vassilis Mastorostergios <vmasto@gmail.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "engines": {
+    "node": "~6.9.1",
+    "npm": ">=3.10.0"
+  },
+  "scripts": {
+    "start": "npm run build && npm run watch",
+    "build": "npm run build-ts && npm run tslint",
+    "serve": "nodemon dist/server.js",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve\"",
+    "test": "jest --forceExit",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "debug": "npm run build && npm run watch-debug",
+    "serve-debug": "nodemon --inspect dist/server.js",
+    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\""
+  },
+  "keywords": [
+    "express",
+    "babel",
+    "boilerplate",
+    "scaffold",
+    "es6",
+    "es2015",
+    "es2016",
+    "es2017",
+    "jest",
+    "eslint"
+  ],
+  "dependencies": {
+    "@types/socket.io": "^1.4.31",
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.4.0",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-bearer-token": "^2.1.0",
+    "express-oauth-server": "^2.0.0",
+    "mongoose": "^4.11.13",
+    "morgan": "^1.7.0",
+    "passport": "^0.4.0",
+    "pug": "^2.0.0-beta11",
+    "rimraf": "^2.6.1",
+    "socket.io": "^2.0.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.0.35",
+    "@types/express-session": "0.0.32",
+    "@types/jest": "^19.2.2",
+    "@types/mongoose": "^4.7.9",
+    "@types/morgan": "^1.7.32",
+    "@types/node": "^7.0.12",
+    "babel-eslint": "^7.2.3",
+    "babel-jest": "^21.0.2",
+    "babel-register": "^6.24.1",
+    "concurrently": "^3.4.0",
+    "dotenv": "^4.0.0",
+    "eslint": "^4.6.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jest": "^21.0.2",
+    "eslint-watch": "^3.1.0",
+    "jest": "^19.0.2",
+    "node-sass": "^4.5.2",
+    "nodemon": "^1.11.0",
+    "shelljs": "^0.7.7",
+    "supertest": "^2.0.1",
+    "ts-jest": "^19.0.8",
+    "tslint": "^5.0.0",
+    "typescript": "^2.4.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "plugins": [
+      "import",
+      "jest"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2017,
+      "sourceType": "module"
+    },
+    "env": {
+      "node": true,
+      "jest": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "rules": {
+      "jest/no-focused-tests": 2,
+      "jest/no-identical-title": 2
+    }
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
